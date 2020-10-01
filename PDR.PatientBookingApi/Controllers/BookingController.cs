@@ -71,6 +71,24 @@ namespace PDR.PatientBookingApi.Controllers
             }
         }
 
+        [HttpPost("{identificationNumber}/cancel")]
+        public IActionResult CancelBooking(Guid identificationNumber)
+        {
+            try
+            {
+                _bookingService.CancelBooking(identificationNumber);
+                return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
         private static MyOrderResult UpdateLatestBooking(List<Order> bookings2, int i)
         {
             MyOrderResult latestBooking;

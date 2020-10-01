@@ -12,17 +12,19 @@ namespace PDR.PatientBooking.Service.BookingServices
     public class BookingService : IBookingService
     {
         private readonly PatientBookingContext _context;
-        private readonly IAddBookingRequestValidator _validator;
+        private readonly IAddBookingRequestValidator _addBookingValidator;
+        private readonly ICancelBookingRequestValidator _cancelBookingValidator;
 
-        public BookingService(PatientBookingContext context, IAddBookingRequestValidator validator)
+        public BookingService(PatientBookingContext context, IAddBookingRequestValidator addBookingValidator, ICancelBookingRequestValidator cancelBookingValidator)
         {
             _context = context;
-            _validator = validator;
+            _addBookingValidator = addBookingValidator;
+            _cancelBookingValidator = cancelBookingValidator;
         }
 
         public void AddBooking(AddBookingRequest request)
         {
-            var validationResult = _validator.ValidateRequest(request);
+            var validationResult = _addBookingValidator.ValidateRequest(request);
 
             if (!validationResult.PassedValidation)
             {
@@ -52,6 +54,21 @@ namespace PDR.PatientBooking.Service.BookingServices
             };
 
             _context.Order.AddRange(new List<Order> { myBooking });
+            _context.SaveChanges();
+        }
+
+        public void CancelBooking(Guid id)
+        {
+            var validationResult = _cancelBookingValidator.ValidateRequest(id);
+
+            if (!validationResult.PassedValidation)
+            {
+                throw new ArgumentException(validationResult.Errors.First());
+            }
+
+            var order = _context.Order.Single(o => o.Id == id);
+            order.IsActive = false;
+
             _context.SaveChanges();
         }
     }

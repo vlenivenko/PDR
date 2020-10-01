@@ -1,4 +1,5 @@
-﻿using PDR.PatientBooking.Service.BookingServices.Requests;
+﻿using System;
+using PDR.PatientBooking.Service.BookingServices.Requests;
 
 namespace PDR.PatientBooking.Service.BookingServices
 {
@@ -12,5 +13,11 @@ namespace PDR.PatientBooking.Service.BookingServices
         /// </summary>
         /// <param name="request">Booking request.</param>
         void AddBooking(AddBookingRequest request);
+
+        /// <summary>
+        /// Cancels the booking.
+        /// </summary>
+        /// <param name="id">Id of booking to be cancelled.</param>
+        void CancelBooking(Guid id);
     }
 }
