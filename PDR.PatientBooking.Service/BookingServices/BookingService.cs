@@ -47,7 +47,8 @@ namespace PDR.PatientBooking.Service.BookingServices
                 DoctorId = bookingDoctorId,
                 Patient = bookingPatient,
                 Doctor = bookingDoctor,
-                SurgeryType = (int)bookingSurgeryType
+                SurgeryType = (int)bookingSurgeryType,
+                IsActive = true
             };
 
             _context.Order.AddRange(new List<Order> { myBooking });

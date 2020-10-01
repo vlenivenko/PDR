@@ -26,7 +26,7 @@ namespace PDR.PatientBookingApi.Controllers
         [HttpGet("patient/{identificationNumber}/next")]
         public IActionResult GetPatientNextAppointnemtn(long identificationNumber)
         {
-            var bockings = _context.Order.OrderBy(x => x.StartTime).ToList();
+            var bockings = _context.Order.Where(o => o.IsActive).OrderBy(x => x.StartTime).ToList();
 
             if (bockings.Where(x => x.Patient.Id == identificationNumber).Count() == 0)
             {

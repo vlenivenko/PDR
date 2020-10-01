@@ -97,6 +97,7 @@ namespace PDR.PatientBooking.Service.Tests.BookingService.Validation
                     {
                         StartTime = request.StartTime.AddMinutes(15),
                         EndTime = request.StartTime.AddMinutes(45),
+                        IsActive = true
                     }
                 })
                 .Create();
@@ -136,6 +137,7 @@ namespace PDR.PatientBooking.Service.Tests.BookingService.Validation
                     {
                         StartTime = request.StartTime.AddHours(2),
                         EndTime = request.StartTime.AddHours(2),
+                        IsActive = true
                     }
                 })
                 .Create();
