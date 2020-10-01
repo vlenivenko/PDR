@@ -107,7 +107,9 @@ namespace PDR.PatientBooking.Service.Tests.DoctorServices
             _doctorService.AddDoctor(request);
 
             //assert
-            _context.Doctor.Should().ContainEquivalentOf(expected, options => options.Excluding(doctor => doctor.Id));
+            _context.Doctor.Should().ContainEquivalentOf(expected, options => options.Excluding(doctor => doctor.Id)
+                                                                                     .Using<DateTime>(ctx => ctx.Subject.Should().BeCloseTo(ctx.Expectation))
+                                                                                     .When(info => info.SelectedMemberPath.Equals(nameof(expected.Created))));
         }
 
         [Test]
