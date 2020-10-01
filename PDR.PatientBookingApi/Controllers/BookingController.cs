@@ -26,7 +26,7 @@ namespace PDR.PatientBookingApi.Controllers
         [HttpGet("patient/{identificationNumber}/next")]
         public IActionResult GetPatientNextAppointnemtn(long identificationNumber)
         {
-            var bockings = _context.Order.OrderBy(x => x.StartTime).ToList();
+            var bockings = _context.Order.Where(o => o.IsActive).OrderBy(x => x.StartTime).ToList();
 
             if (bockings.Where(x => x.Patient.Id == identificationNumber).Count() == 0)
             {
@@ -59,6 +59,24 @@ namespace PDR.PatientBookingApi.Controllers
             try
             {
                 _bookingService.AddBooking(request);
+                return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [HttpPost("{identificationNumber}/cancel")]
+        public IActionResult CancelBooking(Guid identificationNumber)
+        {
+            try
+            {
+                _bookingService.CancelBooking(identificationNumber);
                 return Ok();
             }
             catch (ArgumentException ex)
