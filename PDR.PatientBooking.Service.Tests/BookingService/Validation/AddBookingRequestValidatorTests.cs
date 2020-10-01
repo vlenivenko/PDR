@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using PDR.PatientBooking.Data;
 using PDR.PatientBooking.Data.Models;
-using PDR.PatientBooking.Service.BookingService.Validation;
+using PDR.PatientBooking.Service.BookingServices.Validation;
 using PDR.PatientBooking.Service.BookingServices.Requests;
 
 namespace PDR.PatientBooking.Service.Tests.BookingService.Validation

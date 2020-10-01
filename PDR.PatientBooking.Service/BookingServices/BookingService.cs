@@ -2,7 +2,7 @@
 using PDR.PatientBooking.Service.BookingServices;
 using PDR.PatientBooking.Service.BookingServices.Requests;
 
-namespace PDR.PatientBooking.Service.BookingService
+namespace PDR.PatientBooking.Service.BookingServices
 {
     ///<inheritdoc cref="IBookingService"/>
     public class BookingService : IBookingService

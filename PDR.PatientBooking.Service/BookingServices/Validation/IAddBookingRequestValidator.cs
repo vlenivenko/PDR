@@ -1,7 +1,7 @@
 ﻿using PDR.PatientBooking.Service.BookingServices.Requests;
 using PDR.PatientBooking.Service.Validation;
 
-namespace PDR.PatientBooking.Service.BookingService.Validation
+namespace PDR.PatientBooking.Service.BookingServices.Validation
 {
     /// <summary>
     ///     Represents a contract for booking request validator.

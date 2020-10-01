@@ -4,7 +4,7 @@ using PDR.PatientBooking.Data;
 using PDR.PatientBooking.Service.BookingServices.Requests;
 using PDR.PatientBooking.Service.Validation;
 
-namespace PDR.PatientBooking.Service.BookingService.Validation
+namespace PDR.PatientBooking.Service.BookingServices.Validation
 {
     ///<inheritdoc cref="IAddBookingRequestValidator"/>
     public class AddBookingRequestValidator : IAddBookingRequestValidator
