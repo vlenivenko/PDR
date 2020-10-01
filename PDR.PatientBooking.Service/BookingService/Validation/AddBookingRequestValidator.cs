@@ -58,7 +58,13 @@ namespace PDR.PatientBooking.Service.BookingService.Validation
                 return true;
             }
 
-            // add is doctor busy validation
+            var isDoctorBusy = doctor.Orders.Any(o => o.StartTime < request.EndTime && request.StartTime < o.EndTime);
+            if (isDoctorBusy)
+            {
+                result.PassedValidation = false;
+                result.Errors.Add("A doctor is busy during selected time range");
+                return true;
+            }
 
             return false;
         }
