@@ -109,7 +109,6 @@ namespace PDR.PatientBooking.Service.Tests.DoctorServices.Validation
         [TestCase("user@")]
         [TestCase("@")]
         [TestCase("user")]
-        [Ignore("Ignoring the test because email validation functionality is not implemented.")]
 
         public void ValidateRequest_InvalidEmail_ReturnsFailedValidationResult(string email)
         {
